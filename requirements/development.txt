@@ -1,0 +1,3 @@
+-r base.txt
+
+pipupgrade==1.7.4

@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  django: &django
+    volumes:
+      - './:/home/django/srv/'
