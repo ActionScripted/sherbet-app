@@ -1,10 +1,15 @@
 # Recipe targets (that aren't files...all of them)
-.PHONY : bash build deploy dev development down shell update
+.PHONY : bash build deploy dev development down shell update upgrade
 
 
-# Recipe aliases
+# Recipes: Default (first is "default")
+default: development
+
+
+# Recipes: Aliases
 bash: shell
 dev: development
+update: upgrade
 
 
 # Recipes
@@ -24,5 +29,5 @@ down:
 shell:
 	docker-compose run django bash
 
-update:
+upgrade:
 	docker-compose -f docker-compose.yml -f docker-compose.upgrade.yml run django bash

@@ -34,7 +34,10 @@ RUN mkdir -p /home/django/srv/
 WORKDIR /home/django/srv/
 
 # Application source
+COPY ./config ./config
+COPY ./manage.py ./manage.py
 COPY ./requirements ./requirements
+COPY ./sherbet ./sherbet
 
 # Command scripts (compose only)
 COPY ./compose/django/start.sh ./compose/django/start.sh
