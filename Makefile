@@ -25,6 +25,7 @@ default: development
 # Recipes: Aliases
 bash: shell
 dev: development
+up: development
 update-django: upgrade-django
 update: upgrade-django
 upgrade: upgrade-django
