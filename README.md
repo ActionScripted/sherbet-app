@@ -3,7 +3,7 @@
 ## Devlopment
 
 ```bash
-# Run
+# Run (CTRL + C to quit)
 make development
 
 # Build/Rebuild
