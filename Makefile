@@ -31,6 +31,9 @@ update: upgrade
 build:
 	docker-compose -f $(compose_base) build
 
+clean:
+	rm -rf node_modules
+
 deploy:
 	@echo "Nothing setup yet for deploys!"
 
