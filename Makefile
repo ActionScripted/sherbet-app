@@ -14,20 +14,20 @@ update: upgrade
 
 # Recipes
 build:
-	docker-compose build
+	docker-compose -f ./compose/base.yml build
 
 deploy:
 	@echo "Nothing setup yet for deploys!"
 
 development:
-	docker-compose up
+	docker-compose -f ./compose/base.yml up
 
 down:
-	docker-compose down
-	docker-compose down
+	docker-compose -f ./compose/base.yml down
+	docker-compose -f ./compose/base.yml down
 
 shell:
-	docker-compose run django bash
+	docker-compose -f ./compose/base.yml run django bash
 
 upgrade:
-	docker-compose -f docker-compose.yml -f docker-compose.upgrade.yml run django bash
+	docker-compose -f ./compose/base.yml -f ./compose/upgrade.yml run django bash

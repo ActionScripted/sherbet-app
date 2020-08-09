@@ -3,4 +3,4 @@ version: '3'
 services:
   django: &django
     volumes:
-      - './:/home/django/srv/'
+      - '../:/home/django/srv/'

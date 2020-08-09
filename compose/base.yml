@@ -3,7 +3,7 @@ version: '3'
 services:
   django: &django
     build:
-      context: ./
+      context: ../
       dockerfile: ./compose/django/Dockerfile
     command: ./compose/django/start.sh
     image: sherbet_django
