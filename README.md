@@ -20,10 +20,10 @@ When you exit the container(s), the upgrade will run a non-upgrade build so your
 
 ```bash
 # Django: up
-make upgrade-django
+make upgrade
 
 # Parcel: start shell, upgrade packages
-make upgrade-parcel
+# TODO: "make upgrade" but for Parcel
 ```
 
 ## Future

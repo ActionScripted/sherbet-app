@@ -2,6 +2,9 @@
 compose_base = ./compose/base.yml
 compose_upgrade = ./compose/upgrade.yml
 
+# Recipes: Default
+.DEFAULT_GOAL := up
+
 
 # Recipes: Phony ("not a file")
 .PHONY : bash $\
@@ -9,26 +12,18 @@ compose_upgrade = ./compose/upgrade.yml
          clean $\
          default $\
          deploy $\
-         dev $\
-         development $\
          down $\
          shell $\
+         up $\
          update $\
-         upgrade-django $\
-         upgrade-django-build-run
-
-
-# Recipes: Default (first is "default")
-default: development
+         upgrade $\
+         upgrade-build-run
 
 
 # Recipes: Aliases
 bash: shell
-dev: development
-up: development
-update-django: upgrade-django
-update: upgrade-django
-upgrade: upgrade-django
+update: upgrade
+upgrade: upgrade
 
 
 # Recipes
@@ -41,18 +36,17 @@ clean:
 deploy:
 	@echo "Nothing setup yet for deploys!"
 
-development:
-	docker-compose -f $(compose_base) up
-
 down:
-	docker-compose -f $(compose_base) down
 	docker-compose -f $(compose_base) down
 
 shell:
 	docker-compose -f $(compose_base) run django bash
 
-upgrade-django-build-run:
+up:
+	docker-compose -f $(compose_base) up
+
+upgrade-build-run:
 	docker-compose -f $(compose_base) -f $(compose_upgrade) build
 	docker-compose -f $(compose_base) -f $(compose_upgrade) run django bash
 
-upgrade-django: upgrade-django-build-run build
+upgrade: upgrade-build-run build
