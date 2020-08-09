@@ -14,7 +14,8 @@ compose_upgrade = ./compose/upgrade.yml
          down $\
          shell $\
          update $\
-         upgrade
+         upgrade-django $\
+         upgrade-django-build-run
 
 
 # Recipes: Default (first is "default")
@@ -24,7 +25,9 @@ default: development
 # Recipes: Aliases
 bash: shell
 dev: development
-update: upgrade
+update-django: upgrade-django
+update: upgrade-django
+upgrade: upgrade-django
 
 
 # Recipes
@@ -47,5 +50,8 @@ down:
 shell:
 	docker-compose -f $(compose_base) run django bash
 
-upgrade:
+upgrade-django-build-run:
+	docker-compose -f $(compose_base) -f $(compose_upgrade) build
 	docker-compose -f $(compose_base) -f $(compose_upgrade) run django bash
+
+upgrade-django: upgrade-django-build-run build

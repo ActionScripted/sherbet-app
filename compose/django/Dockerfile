@@ -11,6 +11,9 @@ ENV LANG C.UTF-8
 # Proper container logging
 ENV PYTHONUNBUFFERED 1
 
+# Conditional cleanup (used for root/upgrade runs)
+ARG DOCKER_CLEANUP=1
+
 # Time zone setup (side-step interactive tzdata)
 ENV TZ America/Detroit
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -23,11 +26,11 @@ RUN apt-get update && apt-get install -y \
   gettext \
   # Python (main)
   python3 \
+  python3-dev \
   python3-pip \
   python3-venv \
-  # Clean (trim ~25MB from the image)
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  # Postgres
+  libpq-dev
 
 # Application directory
 RUN mkdir -p /home/django/srv/
@@ -63,3 +66,10 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN set -ex; \
   python -m pip install --upgrade pip setuptools wheel \
   && pip install --no-cache-dir -r requirements/development.txt
+
+# Clean, maybe (trims ~25MB from the image)
+USER root
+RUN if [ $DOCKER_CLEANUP -eq 1 ]; then \
+      apt-get clean && rm -rf /var/lib/apt/lists/* \
+  ; fi
+USER django

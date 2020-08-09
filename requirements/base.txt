@@ -6,3 +6,4 @@ sqlparse==0.3.1
 
 # Others
 django-environ==0.4.5
+psycopg2==2.8.5
