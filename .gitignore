@@ -26,6 +26,7 @@ Icon
 /htmlcov
 /logs
 /node_modules
+/sherbet/static/
 __pycache__/
 celerybeat*
 

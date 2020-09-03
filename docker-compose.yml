@@ -1,5 +1,12 @@
 version: '3'
 
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
 services:
   django: &django
     build:
@@ -11,6 +18,22 @@ services:
     image: sherbet_django
     ports:
       - "8000:8000"
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./compose/frontend/Dockerfile
+    command: ./compose/frontend/start.sh
+    env_file:
+      - ./compose/local.env
+    ports:
+      - "8001:8001"
+      - "8002:8888"
+    volumes:
+      - ./.npmrc:/home/django/srv/current/.npmrc
+      - ./frontend:/home/django/srv/current/frontend
+      - ./package-lock.json:/home/django/srv/current/package-lock.json
+      - ./package.json:/home/django/srv/current/package.json
+      - ./sherbet/static:/home/django/srv/current/sherbet/static
   postgres:
     env_file:
       - ./compose/local.env

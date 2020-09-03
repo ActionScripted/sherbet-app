@@ -13,9 +13,14 @@ compose_upgrade = ./docker-compose.upgrade.yml
          default $\
          deploy $\
          down $\
+         frontend $\
          help $\
+         migrate $\
+         migrate-default $\
          recipes $\
+         setup $\
          shell $\
+         test $\
          up $\
          update $\
          upgrade $\
@@ -55,7 +60,7 @@ migrate-default: ## migrate database "default"
 migrate: migrate-default ## migrate all databases: "default"
 
 setup: ## setup configs, env, etc.
-	./scripts/make-setup.sh
+	./bin/make-setup.sh
 
 shell: ## start Django shell (bash)
 	docker-compose -f $(compose_base) run django bash

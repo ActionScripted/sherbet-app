@@ -1,2 +1,10 @@
-# TODO: maybe not everything
+# Ignore (build context)
 .*
+__pycache__
+node_modules
+venv
+
+# Keep
+!.coveragerc
+!.env
+!.npmrc

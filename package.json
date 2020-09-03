@@ -2,9 +2,11 @@
   "name": "sherbet.app",
   "version": "1.0.0",
   "description": "The lightweight, family-friendly ERP.",
-  "main": "index.js",
+  "private": true,
+  "main": "webpack.common.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.production.js --mode production",
+    "start": "webpack-dev-server --config webpack.development.js --mode development"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,18 @@
   },
   "homepage": "https://github.com/ActionScripted/sherbet.app",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "node-fqdn": "^1.1.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.3"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
