@@ -21,15 +21,21 @@ Integrations:
 * Recipes
 
 
-## Devlopment
+## Development
 
 ```bash
-# Run (CTRL + C to quit)
-make development
+# Setup
+make
 
-# Build/Rebuild
-make build
+# Run development (CTRL + C to quit)
+make start
 ```
+
+Available development paths/ports:
+
+* _<sherbet-host>_:**8000** - Django
+* _<sherbet-host>_:**8001** - Webpack Development Server
+* _<sherbet-host>_:**8025** - Mailhog UI
 
 ## Dependencies
 

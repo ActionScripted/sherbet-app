@@ -13,6 +13,9 @@ services:
       context: ./
       dockerfile: ./compose/django/Dockerfile
     command: ./compose/django/start.sh
+    depends_on:
+      - mailhog
+      - memcached
     env_file:
       - ./compose/local.env
     image: sherbet_django
@@ -34,12 +37,22 @@ services:
       - ./package-lock.json:/home/django/srv/current/package-lock.json
       - ./package.json:/home/django/srv/current/package.json
       - ./sherbet/static:/home/django/srv/current/sherbet/static
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "8025:8025"
+  memcached:
+    image: memcached:1
   postgres:
     env_file:
       - ./compose/local.env
     image: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+  rabbitmq:
+    env_file:
+      - ./compose/local.env
+    image: rabbitmq:3
 
 volumes:
   pgdata:
