@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  django: &django
-    environment:
-      - DOCKER_CLEANUP=0
-    user: root
-    volumes:
-      - '../:/home/django/srv/'

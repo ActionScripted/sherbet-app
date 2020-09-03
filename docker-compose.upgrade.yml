@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  django: &django
+    build:
+      args:
+        - DOCKER_CLEANUP=0
+    user: root

@@ -11,9 +11,6 @@ ENV LANG C.UTF-8
 # Proper container logging
 ENV PYTHONUNBUFFERED 1
 
-# Conditional cleanup (used for root/upgrade runs)
-ARG DOCKER_CLEANUP=1
-
 # Time zone setup (side-step interactive tzdata)
 ENV TZ America/Detroit
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -68,6 +65,8 @@ RUN set -ex; \
   && pip install --no-cache-dir -r requirements/development.txt
 
 # Clean, maybe (trims ~25MB from the image)
+# NOTE: last-ish to lean on caching
+ARG DOCKER_CLEANUP=1
 USER root
 RUN if [ $DOCKER_CLEANUP -eq 1 ]; then \
       apt-get clean && rm -rf /var/lib/apt/lists/* \
