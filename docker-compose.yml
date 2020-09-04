@@ -16,6 +16,7 @@ services:
     depends_on:
       - mailhog
       - memcached
+      - postgres
     env_file:
       - ./compose/local.env
     image: sherbet_django

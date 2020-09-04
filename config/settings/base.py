@@ -48,7 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.forms',
     # Third-party
+    'capture_tag',
+    'constance.backends.database',
+    'django_celery_beat',
+    'django_celery_results',
+    'django_filters',
+    'rest_framework',
+    'reversion',
     # Project: High Priority
+    'sherbet.constance.apps.CustomConstance',
+    'sherbet.users.apps.UsersConfig',
     # Project: Normal Priority
 ]
 

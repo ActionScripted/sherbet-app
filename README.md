@@ -35,7 +35,10 @@ Setup project and start development (Docker):
 # Setup
 make
 
-# Run development (CTRL + C to quit)
+# Run all migrations
+make migrate
+
+# Run Django in development (CTRL + C to quit)
 make start
 ```
 
