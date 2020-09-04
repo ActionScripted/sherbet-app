@@ -142,6 +142,10 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'sherbet.tasks.reversion_cleanup',
         'schedule': crontab(hour=2, minute=0),
     },
+    'reversion_createinitial': {
+        'task': 'sherbet.tasks.reversion_createinitial',
+        'schedule': crontab(hour="*/30"),
+    },
 }
 
 # Celery: Broker (backend)

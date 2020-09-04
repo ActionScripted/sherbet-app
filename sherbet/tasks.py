@@ -23,3 +23,11 @@ def reversion_cleanup():
         f'--days={settings.REVERSION_CLEANUP_DAYS}',
         f'--keep={settings.REVERSION_CLEANUP_KEEP}'
     )
+
+
+@celery_app.task
+def reversion_createinitial():
+    """
+    Setup initial revisions for all apps/models
+    """
+    management.call_command('createinitialrevisions')
