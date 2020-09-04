@@ -56,10 +56,7 @@ services:
       - "8001:8001"
       - "8002:8888"
     volumes:
-      - ./.npmrc:/home/django/srv/.npmrc
       - ./frontend:/home/django/srv/frontend
-      - ./package-lock.json:/home/django/srv/package-lock.json
-      - ./package.json:/home/django/srv/package.json
       - ./sherbet/static:/home/django/srv/sherbet/static
   mailhog:
     image: mailhog/mailhog:v1.0.0

@@ -22,13 +22,13 @@ compose_upgrade = ./docker-compose.upgrade.yml
          shell $\
          test $\
          up $\
-         update-django $\
-         upgrade-build-run $\
-         upgrade-django
+         upgrade-build-run-django $\
+         upgrade-build-run-frontend $\
+         upgrade-django $\
+         upgrade-frontend
 
 # Recipes: Aliases
 bash: shell
-update-django: upgrade-django
 
 # Recipes
 build: ## build/rebuild all services
@@ -71,8 +71,13 @@ test: ## run tests
 up: ## start all services
 	docker-compose -f $(compose_base) up
 
-upgrade-build-run:
-	docker-compose -f $(compose_base) -f $(compose_upgrade) build
+upgrade-build-run-django:
+	docker-compose -f $(compose_base) -f $(compose_upgrade) build django
 	docker-compose -f $(compose_base) -f $(compose_upgrade) run django bash
 
-upgrade-django: upgrade-build-run build ## start Django shell (bash) as root with all files mounted
+upgrade-build-run-frontend:
+	docker-compose -f $(compose_base) -f $(compose_upgrade) build frontend
+	docker-compose -f $(compose_base) -f $(compose_upgrade) run frontend bash
+
+upgrade-django: upgrade-build-run-django build ## start Django shell (bash) as root with all files mounted
+upgrade-frontend: upgrade-build-run-frontend build ## start frontend shell (bash) as root with all files mounted

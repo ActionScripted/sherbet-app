@@ -12,6 +12,6 @@ set -o nounset
 # Celery Flower
 celery flower \
     --app=config.celery_app \
-    --basic_auth="${CELERY_FLOWER_USER}:${CELERY_FLOWER_PASS}" \
+    #--basic_auth="${CELERY_FLOWER_USER}:${CELERY_FLOWER_PASS}" \
     --broker="${CELERY_BROKER_URL}" \
     --port="${CELERY_FLOWER_PORT}"

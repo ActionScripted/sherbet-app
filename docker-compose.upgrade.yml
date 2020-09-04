@@ -10,3 +10,8 @@ services:
       - ./config:/home/django/srv/config
       - ./requirements:/home/django/srv/requirements
       - ./sherbet:/home/django/srv/sherbet
+  frontend:
+    build:
+      args:
+        - DOCKER_CLEANUP=0
+    user: root
