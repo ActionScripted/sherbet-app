@@ -6,3 +6,7 @@ services:
       args:
         - DOCKER_CLEANUP=0
     user: root
+    volumes:
+      - ./config:/home/django/srv/config
+      - ./requirements:/home/django/srv/requirements
+      - ./sherbet:/home/django/srv/sherbet

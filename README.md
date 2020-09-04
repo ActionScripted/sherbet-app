@@ -23,6 +23,14 @@ Integrations:
 
 ## Development
 
+Setup an `/etc/hosts` rule for:
+
+```bash
+127.0.0.1 sherbet.test
+```
+
+Setup project and start development (Docker):
+
 ```bash
 # Setup
 make
@@ -33,24 +41,33 @@ make start
 
 Available development paths/ports:
 
-* _<sherbet-host>_:**8000** - Django
-* _<sherbet-host>_:**8001** - Webpack Development Server
-* _<sherbet-host>_:**8025** - Mailhog UI
+* _sherbet.test_:**8000** - Django
+* _sherbet.test_:**8001** - Webpack Development Server
+* _sherbet.test_:**8025** - Mailhog UI
+* _sherbet.test_:**8055** - Celery Flower (see `compose/locale.env`)
 
 ## Dependencies
 
-### Adding or Updating Dependenies
+### Adding or Updating Django/Python Dependenies
 
 It's never a perfect process and you're going to get your hands a little dirty. To help make things easier, we have an upgrade command that'll run your stack as root with your entire local file system mounted. You can then make changes as root to all files and save these changes as needed.
 
 When you exit the container(s), the upgrade will run a non-upgrade build so your images will revert to their safe and optimized versions. Make sure you save anything before exiting!
 
 ```bash
-# Django: up
+# Run Django services in upgrade mode
 make upgrade
 
-# Parcel: start shell, upgrade packages
-# TODO: "make upgrade" but for Parcel
+# (Docker) Interactively upgrade packages
+pipupgrade
+
+# (Docker) Save changes to shared volume
+pip freeze > sherbet/freeze.txt
+exit
+
+# Copy changes, delete freeze, add/edit requirements
+pbcopy < requirements/freeze.txt && rm requirements/freeze.txt
+$EDITOR requirements/base.txt # Paste, move, etc.
 ```
 
 ## Future

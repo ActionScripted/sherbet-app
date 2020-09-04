@@ -2,7 +2,7 @@ FROM node:14
 LABEL maintainer="actionscripted@gmail.com"
 
 # Create/set working directory to project
-WORKDIR /home/django/srv/current
+WORKDIR /home/django/srv
 
 # Copy deps and settings
 COPY ./.npmrc .npmrc

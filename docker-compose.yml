@@ -21,6 +21,29 @@ services:
     image: sherbet_django
     ports:
       - "8000:8000"
+    user: django
+    volumes:
+      - ./config:/home/django/srv/config
+      - ./sherbet:/home/django/srv/sherbet
+  celery: &celery
+    command: ./compose/celery/start.sh
+    depends_on:
+      - rabbitmq
+    env_file:
+      - ./compose/local.env
+    image: sherbet_django:latest
+    user: django
+    volumes:
+      - ./config:/home/django/srv/config
+      - ./sherbet:/home/django/srv/sherbet
+  celerybeat:
+    <<: *celery
+    command: ./compose/beat/start.sh
+  celeryflower:
+    <<: *celery
+    command: ./compose/flower/start.sh
+    ports:
+      - "8055:5555"
   frontend:
     build:
       context: ./
@@ -32,11 +55,11 @@ services:
       - "8001:8001"
       - "8002:8888"
     volumes:
-      - ./.npmrc:/home/django/srv/current/.npmrc
-      - ./frontend:/home/django/srv/current/frontend
-      - ./package-lock.json:/home/django/srv/current/package-lock.json
-      - ./package.json:/home/django/srv/current/package.json
-      - ./sherbet/static:/home/django/srv/current/sherbet/static
+      - ./.npmrc:/home/django/srv/.npmrc
+      - ./frontend:/home/django/srv/frontend
+      - ./package-lock.json:/home/django/srv/package-lock.json
+      - ./package.json:/home/django/srv/package.json
+      - ./sherbet/static:/home/django/srv/sherbet/static
   mailhog:
     image: mailhog/mailhog:v1.0.0
     ports:
