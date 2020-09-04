@@ -22,13 +22,13 @@ compose_upgrade = ./docker-compose.upgrade.yml
          shell $\
          test $\
          up $\
-         update $\
-         upgrade $\
-         upgrade-build-run
+         update-django $\
+         upgrade-build-run $\
+         upgrade-django
 
 # Recipes: Aliases
 bash: shell
-update: upgrade
+update-django: upgrade-django
 
 # Recipes
 build: ## build/rebuild all services
@@ -75,4 +75,4 @@ upgrade-build-run:
 	docker-compose -f $(compose_base) -f $(compose_upgrade) build
 	docker-compose -f $(compose_base) -f $(compose_upgrade) run django bash
 
-upgrade: upgrade-build-run build ## start Django shell (bash) as root with all files mounted
+upgrade-django: upgrade-build-run build ## start Django shell (bash) as root with all files mounted

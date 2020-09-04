@@ -59,7 +59,7 @@ When you exit the container(s), the upgrade will run a non-upgrade build so your
 
 ```bash
 # Run Django services in upgrade mode
-make upgrade
+make upgrade-django
 
 # (Docker) Interactively upgrade packages
 pipupgrade
