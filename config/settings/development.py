@@ -3,7 +3,6 @@ import os
 
 from .base import *  # noqa
 from .base import env
-from .base import LOGGING
 
 
 # Debug
@@ -31,7 +30,10 @@ EMAIL_PORT = env('MAILHOG_PORT')
 
 
 # Security
+ALLOWED_HOSTS += ['.sherbet.test']  # noqa
+CSRF_COOKIE_DOMAIN = '.sherbet.test'
 CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_DOMAIN = '.sherbet.test'
 SESSION_COOKIE_SECURE = False
 
 

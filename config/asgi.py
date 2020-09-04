@@ -17,6 +17,6 @@ from django.core.asgi import get_asgi_application
 path_root = Path(__file__).parent.resolve(strict=True).parent.parent
 sys.path.append(str(path_root / 'sherbet'))
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.production')
 
 application = get_asgi_application()
