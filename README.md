@@ -41,10 +41,10 @@ make start
 
 Available development paths/ports:
 
-* _sherbet.test_:**8000** - Django
-* _sherbet.test_:**8001** - Webpack Development Server
-* _sherbet.test_:**8025** - Mailhog UI
-* _sherbet.test_:**8055** - Celery Flower (see `compose/locale.env`)
+* sherbet.test:**8000** - Django
+* sherbet.test:**8001** - Webpack Development Server
+* sherbet.test:**8025** - Mailhog UI
+* sherbet.test:**8055** - Celery Flower (see `compose/locale.env`)
 
 ## Dependencies
 
