@@ -40,8 +40,16 @@ COPY ./requirements ./requirements
 COPY ./sherbet ./sherbet
 
 # Command scripts (compose only)
+COPY ./compose/beat/start.sh ./compose/beat/start.sh
+COPY ./compose/celery/start.sh ./compose/celery/start.sh
+COPY ./compose/django/pytest.sh ./compose/django/pytest.sh
 COPY ./compose/django/start.sh ./compose/django/start.sh
+COPY ./compose/flower/start.sh ./compose/flower/start.sh
+RUN chmod +x ./compose/beat/start.sh
+RUN chmod +x ./compose/celery/start.sh
+RUN chmod +x ./compose/django/pytest.sh
 RUN chmod +x ./compose/django/start.sh
+RUN chmod +x ./compose/flower/start.sh
 
 # Application group and user
 ARG django_gid=999
