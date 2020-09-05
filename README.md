@@ -1,25 +1,6 @@
 # sherbet.app
 
-Features:
-
-* Assets
-  * Home and personal
-    * Home assets are things like a furnace or a water heater
-    * Personal assetss are things like a table saw or video game
-  * Lend/borrow status with optional contact linking
-* Contacts
-* Services
-  * Contact-linked list of services and service providers with notes/info.
-* Sell Your House
-  * Collect asset and service information in a packet for new buyers.
-* Insurance Information
-  * Collect assets and other information for your insurance providers.
-
-Integrations:
-
-* Calendar and Reminders
-* Recipes
-
+**The lightweight, family-friendly ERP**. For details, check out [SCOPE.md](docs/SCOPE.md)
 
 ## Development
 
@@ -95,6 +76,12 @@ mv frontend/package*.json ./
 ## Future
 
 * Use `pipenv` or something comparable.
+
+## "I Hate This, It's Now How I'd Do It"
+
+I get it, 100%. If this is at least close, I'd strongly suggest copying and removing, versus trying to rebuild from zero. It's not hard, it's just a lot of time to burn.
+
+If you wanna tell me about why it sucks or even contribute that'd be awesome but again I get it if not.
 
 ## License
 
