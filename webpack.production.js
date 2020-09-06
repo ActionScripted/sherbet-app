@@ -1,12 +1,18 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const common = require('./webpack.common.js');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TerserPlugin = require('terser-webpack-plugin');
-const common = require('./webpack.common.js');
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
+
+const brand_color = '#d80058';
+const brand_name = 'Sherbet'
+const path_django = 'sherbet';
+const path_frontend = 'frontend';
 
 
 module.exports = merge(common, {
@@ -59,13 +65,13 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        'sherbet/static/*.{css,js}',
-        'sherbet/static/fonts',
+        path_django + '/static/*.{css,js}',
+        path_django + '/static/fonts',
       ],
     }),
     new MiniCssExtractPlugin({filename: '[name].styles.css'}),
     new FaviconsWebpackPlugin({
-      background: '#00babc',
+      background: brand_color,
       icons: {
         android: true,
         appleIcon: true,
@@ -76,16 +82,16 @@ module.exports = merge(common, {
         windows: true,
         yandex: false
       },
-      logo: path.resolve(__dirname, 'frontend', 'images', 'icon.png'),
+      logo: path.resolve(__dirname, path_frontend, 'images', 'icon.png'),
       persistentCache: true,
       prefix: 'icons/',
-      title: 'Sherbet'
+      title: brand_name
     }),
     new FileManagerPlugin({
       onEnd: {
         copy: [{
-          source: path.resolve(__dirname, 'sherbet', 'static', 'icons', 'favicon.ico'),
-          destination: path.resolve(__dirname, 'sherbet', 'static', 'favicon.ico'),
+          source: path.resolve(__dirname, path_django, 'static', 'icons', 'favicon.ico'),
+          destination: path.resolve(__dirname, path_django, 'static', 'favicon.ico'),
         }]
       }
     }),
