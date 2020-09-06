@@ -18,14 +18,42 @@
     "url": "https://github.com/ActionScripted/sherbet.app/issues"
   },
   "homepage": "https://github.com/ActionScripted/sherbet.app",
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 2 versions",
+      "Firefox ESR",
+      "not ie < 11",
+      "not dead"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "css-loader": "^4.2.2",
+    "fibers": "^5.0.0",
+    "file-loader": "^6.1.0",
+    "filemanager-webpack-plugin": "^2.0.5",
+    "html-webpack-inline-svg-plugin": "^2.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.0",
     "node-fqdn": "^1.1.1",
     "npm-check-updates": "^8.0.5",
-    "ts-loader": "^8.0.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
@@ -33,6 +61,7 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "webpack-bundle-analyzer": "^3.8.0"
   }
 }

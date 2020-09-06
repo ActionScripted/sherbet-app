@@ -28,8 +28,9 @@ Available development paths/ports:
 * sherbet.test:**8000** - Django
 * sherbet.test:**8000/graphql** - GraphQL IDE
 * sherbet.test:**8001** - Webpack Development Server
+* sherbet.test:**8002** - Webpack Bunder Analyzer
 * sherbet.test:**8025** - Mailhog UI
-* sherbet.test:**8055** - Celery Flower 
+* sherbet.test:**8055** - Celery Flower
 
 Some paths/ports may require secrets from `compose/locale.env`
 

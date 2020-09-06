@@ -5,6 +5,7 @@ node_modules
 venv
 
 # Keep
+!.babelrc
 !.coveragerc
 !.env
 !.npmrc

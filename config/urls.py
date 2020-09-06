@@ -12,6 +12,7 @@ from sherbet.admin import admin_site
 
 # Standard (Django) URL patters
 urlpatterns = [
+    path('', include('sherbet.pages.urls', namespace='pages')),
     path('admin/', admin_site.urls),
     path('graphql', GraphQLView.as_view(graphiql=True)),
 ]

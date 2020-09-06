@@ -1,3 +1,4 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const common = require('./webpack.common.js');
 const fqdn = require('node-fqdn');
 const path = require('path');
@@ -37,6 +38,10 @@ module.exports = merge(common, {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerHost: '0.0.0.0',
+      analyzerPort: 8888
+    }),
   ]
 });

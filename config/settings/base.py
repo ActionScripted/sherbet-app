@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'sherbet.constance.apps.CustomConstance',
     'sherbet.users.apps.UsersConfig',
     # Project: Normal Priority
+    'sherbet.pages.apps.PagesConfig',
 ]
 
 # Project: Debug

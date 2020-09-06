@@ -5,6 +5,7 @@ LABEL maintainer="actionscripted@gmail.com"
 WORKDIR /home/django/srv
 
 # Copy deps and settings
+COPY ./.babelrc .babelrc
 COPY ./.npmrc .npmrc
 COPY ./compose/frontend/build.sh ./compose/frontend/build.sh
 COPY ./compose/frontend/start.sh ./compose/frontend/start.sh
