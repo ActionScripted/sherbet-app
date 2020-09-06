@@ -79,6 +79,7 @@ mv frontend/package*.json ./
 
 ## Future
 
+* React hot reload or react refresh
 * Use `pipenv` or something comparable.
 
 ## "I Hate This, It's Now How I'd Do It"
