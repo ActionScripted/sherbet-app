@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
     'django_filters',
+    'graphene_django',
     'rest_framework',
     'reversion',
     # Project: High Priority
@@ -232,6 +233,15 @@ LANGUAGE_CODE = 'en-us'
 
 # Globalization: Time Zone (default)
 TIME_ZONE = 'America/Detroit'
+
+
+# GRAPHENE
+# ------------------------------------------------------------------------------
+
+# Graphene: Configuration
+GRAPHENE = {
+    'SCHEMA': 'sherbet.schema.schema',
+}
 
 
 # HASHIDS
