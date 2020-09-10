@@ -1,6 +1,7 @@
 -r base.txt
 
 coverage==5.2.1
+django-cors-headers==3.5.0
 django-coverage-plugin==1.8.0
 django-debug-toolbar==2.2
 hypothesis==5.30.1

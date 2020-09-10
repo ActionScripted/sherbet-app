@@ -53,8 +53,8 @@ services:
     env_file:
       - ./compose/local.env
     ports:
-      - "8001:8001"
-      - "8002:8888"
+      - "3000:3000"
+      - "8888:8888"
     volumes:
       - ./frontend:/home/django/srv/frontend
       - ./sherbet/static:/home/django/srv/sherbet/static

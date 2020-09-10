@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const origin_host = process.env.WEBPACK_ORIGIN_HOST || fqdn();
-const origin_port = process.env.WEBPACK_ORIGIN_PORT || 8001;
+const origin_port = process.env.WEBPACK_ORIGIN_PORT || 3000;
 const target_host = process.env.WEBPACK_TARGET_HOST || origin_host;
 const target_port = process.env.WEBPACK_TARGET_PORT || 8000;
 
