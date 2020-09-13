@@ -1,3 +1,14 @@
-html {
-  font-family: sans-serif;
-}
+@charset "utf-8";
+
+/**
+ * Index (but who imports the importers?)
+ * WARN: order matters
+ *
+ * NPM import:
+ *   @import "~some/node/module.css";
+ *
+ * Local import:
+ *   @import "styles/file"
+ */
+
+@import "styles/variables";

@@ -2,6 +2,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const common = require('./webpack.common.js');
 const fqdn = require('node-fqdn');
 const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
@@ -37,8 +38,23 @@ module.exports = merge(common, {
     },
     publicPath: '/static/'
   },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['react-refresh/babel', ]
+          },
+        }
+      },
+    ]
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
     new BundleAnalyzerPlugin({
       analyzerHost: '0.0.0.0',
       analyzerPort: 8888
