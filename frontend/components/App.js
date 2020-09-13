@@ -110,7 +110,7 @@ export default class App extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <h1>App (React)</h1>
+        <h1>App (React; Apollo)</h1>
         <p>Hello, I'm the app.</p>
         <Users />
       </ApolloProvider>

@@ -29,7 +29,7 @@ RUN groupadd -g $django_gid django \
 USER django
 
 # Install deps
-RUN npm install
+RUN npm install --verbose
 
 # Clean, maybe (trims ~25MB from the image)
 # NOTE: last-ish to lean on caching
