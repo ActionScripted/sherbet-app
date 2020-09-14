@@ -11,4 +11,12 @@
  *   @import "styles/file"
  */
 
+// Bulma: Base/Initial
+@import "~bulma/sass/utilities/initial-variables";
+
+// Styles: Configuration
+@import "styles/fonts";
 @import "styles/variables";
+
+// Bulma: Full
+@import "~bulma/bulma";
