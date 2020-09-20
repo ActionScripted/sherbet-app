@@ -23,6 +23,8 @@ Integrations:
 
 * Calendar and Reminders
 * Recipes
+  * List if possible, pull from integration/API
+  * Show "your family has chosen [service]; view it at [button]"
 
 
 ## Exclusions
