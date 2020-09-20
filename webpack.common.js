@@ -1,18 +1,15 @@
-const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const path_django = 'sherbet';
-const path_frontend = 'frontend';
+const config = require('./frontend/config.js')
 
 
 module.exports = {
   entry: {
-    public: path.resolve(__dirname, path_frontend, 'public.js'),
+    public: path.resolve(__dirname, config.path.frontend, 'public.js'),
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, path_django, 'static'),
+    path: path.resolve(__dirname, config.path.django, 'static'),
     publicPath: '/static/'
   },
   module: {
@@ -79,23 +76,15 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: '__public.html',
-      template: path.resolve(__dirname, 'frontend', 'public.html')
-    }),
-    new HtmlWebpackInlineSVGPlugin({
-      inlineAll: true,
-      runPreEmit: true,
-    }),
-  ],
+  plugins: [],
   resolve: {
     alias: {
-      API: path.resolve(__dirname, path_frontend, 'api/'),
-      Components: path.resolve(__dirname, path_frontend, 'components/'),
-      Constants: path.resolve(__dirname, path_frontend, 'constants/'),
-      Images: path.resolve(__dirname, path_frontend, 'images/'),
-      Packages: path.resolve(__dirname, path_frontend, 'packages/'),
+      API: path.resolve(__dirname, config.path.frontend, 'api/'),
+      Components: path.resolve(__dirname, config.path.frontend, 'components/'),
+      Config: path.resolve(__dirname, config.path.frontend, 'config.js'),
+      Constants: path.resolve(__dirname, config.path.frontend, 'constants/'),
+      Images: path.resolve(__dirname, config.path.frontend, 'images/'),
+      Packages: path.resolve(__dirname, config.path.frontend, 'packages/'),
     }
   }
 };

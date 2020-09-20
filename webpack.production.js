@@ -1,7 +1,8 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const common = require('./webpack.common.js');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require('path');
@@ -9,10 +10,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
 
-const brand_color = '#d80058';
-const brand_name = 'Sherbet'
-const path_django = 'sherbet';
-const path_frontend = 'frontend';
+const common = require('./webpack.common.js');
+const config = require('./frontend/config.js')
 
 
 module.exports = merge(common, {
@@ -65,13 +64,19 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        path_django + '/static/*.{css,js}',
-        path_django + '/static/fonts',
+        config.path.django + '/static/*.{css,js}',
+        config.path.django + '/static/fonts',
       ],
+    }),
+    new HtmlWebpackPlugin({
+      filename: '__public.html',
+      minify: false,
+      template: path.resolve(__dirname, 'frontend', 'public.html'),
+      xhtml: true,
     }),
     new MiniCssExtractPlugin({filename: '[name].styles.css'}),
     new FaviconsWebpackPlugin({
-      background: brand_color,
+      background: config.brand.color,
       icons: {
         android: true,
         appleIcon: true,
@@ -82,16 +87,16 @@ module.exports = merge(common, {
         windows: true,
         yandex: false
       },
-      logo: path.resolve(__dirname, path_frontend, 'images', 'icon.png'),
+      logo: path.resolve(__dirname, config.path.frontend, 'images', 'icon.png'),
       persistentCache: true,
       prefix: 'icons/',
-      title: brand_name
+      title: config.brand.name
     }),
     new FileManagerPlugin({
       onEnd: {
         copy: [{
-          source: path.resolve(__dirname, path_django, 'static', 'icons', 'favicon.ico'),
-          destination: path.resolve(__dirname, path_django, 'static', 'favicon.ico'),
+          source: path.resolve(__dirname, config.path.django, 'static', 'icons', 'favicon.ico'),
+          destination: path.resolve(__dirname, config.path.django, 'static', 'favicon.ico'),
         }]
       }
     }),
