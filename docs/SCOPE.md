@@ -24,7 +24,13 @@ Integrations:
 * Calendar and Reminders
 * Recipes
   * List if possible, pull from integration/API
+  * Model
+    * Title
+    * Label(s)
+    * Link
+    * Comment(s)
   * Show "your family has chosen [service]; view it at [button]"
-
+  * Take snapshot of linked website
+    * Update snapshot(s) when users click (schedule snapshot task)
 
 ## Exclusions

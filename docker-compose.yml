@@ -59,7 +59,7 @@ services:
       - ./frontend:/home/django/srv/frontend
       - ./sherbet/static:/home/django/srv/sherbet/static
   mailhog:
-    image: mailhog/mailhog:v1.0.0
+    image: mailhog/mailhog:v1.0.1
     ports:
       - "8025:8025"
   memcached:
@@ -67,7 +67,7 @@ services:
   postgres:
     env_file:
       - ./compose/local.env
-    image: postgres
+    image: postgres:13
     volumes:
       - pgdata:/var/lib/postgresql/data
   rabbitmq:
