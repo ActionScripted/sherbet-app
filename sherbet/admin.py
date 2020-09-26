@@ -7,7 +7,16 @@ from reversion.admin import VersionAdmin
 import django_celery_beat as celery_beat
 import django_celery_results as celery_results
 
-from sherbet import users
+from sherbet.assets.models import Asset
+from sherbet.assets.admin import AssetAdmin
+from sherbet.comments.models import Comment
+from sherbet.locations.models import Location
+from sherbet.users.models import User
+
+
+class ReversionAssetAdmin(VersionAdmin, AssetAdmin):
+    """Reversion mixin for better admin history"""
+    pass
 
 
 class ReversionGroupAdmin(VersionAdmin, auth.admin.GroupAdmin):
@@ -48,7 +57,6 @@ admin_site = SherbetAdminSite()
 
 # Auth/Auth
 admin_site.register(auth.models.Group, ReversionGroupAdmin)
-admin_site.register(users.models.User, ReversionUserAdmin)
 
 
 # Celery Beat
@@ -65,3 +73,10 @@ admin_site.register(celery_results.models.TaskResult, ReversionTaskResultAdmin)
 
 # Constance (settings)
 admin_site.register([ConstanceConfig], ConstanceAdmin)
+
+
+# Sherbet: Main
+admin_site.register(Asset, ReversionAssetAdmin)
+admin_site.register(Comment, VersionAdmin)
+admin_site.register(Location, VersionAdmin)
+admin_site.register(User, ReversionUserAdmin)

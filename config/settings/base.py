@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
     'django_filters',
+    'djmoney',
     'graphene_django',
     'rest_framework',
     'reversion',
@@ -60,6 +61,9 @@ INSTALLED_APPS = [
     'sherbet.constance.apps.CustomConstance',
     'sherbet.users.apps.UsersConfig',
     # Project: Normal Priority
+    'sherbet.assets.apps.AssetsConfig',
+    'sherbet.comments.apps.CommentsConfig',
+    'sherbet.locations.apps.LocationsConfig',
     'sherbet.pages.apps.PagesConfig',
 ]
 
