@@ -54,6 +54,9 @@ help: ## show help
 	@echo "Usage: make [recipe]\n\nRecipes:"
 	@grep -h '##' $(MAKEFILE_LIST) | grep -v grep | sed -e 's/\(.*\):.*## \(.*\)/\1|    \2/' | tr '|' '\n'
 
+makemigrations: ## make migrations
+	docker-compose run django python manage.py makemigrations
+
 migrate-default: ## migrate database "default"
 	docker-compose run django python manage.py migrate
 

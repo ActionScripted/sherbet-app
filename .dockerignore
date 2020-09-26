@@ -1,6 +1,8 @@
 # Ignore (build context)
 .*
 __pycache__
+bin
+docs
 node_modules
 venv
 
