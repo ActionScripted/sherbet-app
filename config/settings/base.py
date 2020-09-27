@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django_filters',
     'djmoney',
     'graphene_django',
+    'guardian',
     'rest_framework',
     'reversion',
     # Project: High Priority
@@ -83,6 +84,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Auth: Backends
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
 ]
 
 # Auth: Password validation
@@ -247,6 +249,13 @@ TIME_ZONE = 'America/Detroit'
 GRAPHENE = {
     'SCHEMA': 'sherbet.schema.schema',
 }
+
+
+# GUARDIAN
+# ------------------------------------------------------------------------------
+
+# Guardian: 403 instead of empty
+GUARDIAN_RAISE_403 = True
 
 
 # HASHIDS
