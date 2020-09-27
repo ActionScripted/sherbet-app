@@ -15,8 +15,9 @@ from sherbet.admin import admin_site
 urlpatterns = [
     path('', include('sherbet.pages.urls', namespace='pages')),
     path('admin/', admin_site.urls),
+    path('hijack/', include('hijack.urls', namespace='hijack')),
     # TODO: remove csrf_exempt
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
 
 

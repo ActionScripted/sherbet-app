@@ -1,16 +1,18 @@
-from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from djmoney.models.fields import MoneyField
 
 
-from sherbet.comments.models import Comment
+from sherbet.models import CommentsMixin
+from sherbet.models import FamilyMixin
 from sherbet.models import HistoryMixin
+from sherbet.models import LocationMixin
 
 
-class Asset(HistoryMixin):
-    comments = GenericRelation(Comment)
-    cost = MoneyField(max_digits=14, decimal_places=2, default_currency='USD')
-    location = models.ForeignKey('locations.Location', blank=True, null=True, on_delete=models.CASCADE)
+class Asset(CommentsMixin, FamilyMixin, HistoryMixin, LocationMixin):
+    cost = MoneyField(
+        decimal_places=2,
+        default_currency='USD',
+        max_digits=14, )
     manual_url = models.URLField(blank=True)
     name = models.CharField(max_length=512)
 

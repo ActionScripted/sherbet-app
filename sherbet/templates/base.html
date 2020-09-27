@@ -1,3 +1,4 @@
+{% load hijack_tags %}
 {% load static %}
 
 {% get_static_prefix as static_prefix %}
@@ -10,10 +11,13 @@
     <meta name="description" content="TODO: Page Description" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}{% endblock %} - Sherbet</title>
-    <link href="{% static "/public.styles.css" %}" rel="stylesheet" />
+    <link href="{% static '/hijack/hijack-styles.css' %}" rel="stylesheet" />
+    <link href="{% static '/public.styles.css' %}" rel="stylesheet" />
     {% block html_head %}{% endblock %}
   </head>
   <body>
+
+    {% hijack_notification %}
 
     <header class="global-header">
       <div class="global-header__container"></div>

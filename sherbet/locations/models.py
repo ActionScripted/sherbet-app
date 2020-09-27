@@ -1,9 +1,10 @@
 from django.db import models
 
+from sherbet.models import FamilyMixin
 from sherbet.models import HistoryMixin
 
 
-class Location(HistoryMixin):
+class Location(FamilyMixin, HistoryMixin):
     """
     TODO: non-US localication adjustments
     """

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.forms',
     # Third-party
     'capture_tag',
+    'compat',
     'constance.backends.database',
     'django_celery_beat',
     'django_celery_results',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'djmoney',
     'graphene_django',
     'guardian',
+    'hijack',
     'rest_framework',
     'reversion',
     # Project: High Priority
@@ -64,6 +66,7 @@ INSTALLED_APPS = [
     # Project: Normal Priority
     'sherbet.assets.apps.AssetsConfig',
     'sherbet.comments.apps.CommentsConfig',
+    'sherbet.families.apps.FamiliesConfig',
     'sherbet.locations.apps.LocationsConfig',
     'sherbet.pages.apps.PagesConfig',
 ]
@@ -265,7 +268,16 @@ GUARDIAN_RAISE_403 = True
 HASHIDS_MIN_LENGTH = 16
 
 # Hashids: Salt
-HASHIDS_SALT = 'trggvatfnyglbansevqnl'
+HASHIDS_SALT = 'fureorgvfqryvpvbhfjuravgfubg'
+
+
+# HIJACK
+# ------------------------------------------------------------------------------
+
+# Hijack: admin redirect to
+HIJACK_LOGIN_REDIRECT_URL = '/'
+# Hijack: admin logout redirect to
+HIJACK_LOGOUT_REDIRECT_URL = '/admin/users/user/'
 
 
 # LOGGING

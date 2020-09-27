@@ -9,6 +9,11 @@ class Comment(HistoryMixin):
     comment = models.TextField()
     content_object = GenericForeignKey('content_type', 'object_id')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    family = models.ForeignKey(
+        'families.family',
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE, )
     object_id = models.PositiveIntegerField()
 
     def __str__(self):
