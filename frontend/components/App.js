@@ -18,6 +18,7 @@ import { AUTH_LOGIN_URL } from 'Constants';
 import { client } from 'Client';
 import { Header } from 'Components/Header';
 import { HistoryRouter } from 'Components/HistoryRouter';
+import { settings } from 'Settings';
 
 
 const initialState = {
@@ -40,8 +41,11 @@ const USERS = gql`
   }
 `;
 
+
 function Users() {
-  const { loading, error, data } = useQuery(USERS);
+  const { loading, error, data } = useQuery(USERS, {
+    pollInterval: settings.graphql.query.poll_interval,
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;

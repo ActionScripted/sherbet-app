@@ -12,6 +12,8 @@ Biuld a lightweight, family-friendly ERP that anyone can use without extensive d
     * Personal assetss are things like a table saw or video game
   * Lend/borrow status with optional contact linking
 * Contacts
+* Frontend
+  * GraphQL subscriptions support
 * Services
   * Contact-linked list of services and service providers with notes/info.
 * Sell Your House
