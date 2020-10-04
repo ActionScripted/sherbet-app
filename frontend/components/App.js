@@ -8,14 +8,16 @@ import { ApolloProvider } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import {
-  Switch,
+  Link,
+  Redirect,
   Route,
-  Link
+  Switch
 } from 'react-router-dom';
 
+import { AUTH_LOGIN_URL } from 'Constants';
 import { client } from 'Client';
-import { Router } from 'Components/Router';
 import { Header } from 'Components/Header';
+import { HistoryRouter } from 'Components/HistoryRouter';
 
 
 const initialState = {
@@ -130,7 +132,7 @@ export default class App extends React.Component {
    */
   render() {
     return (
-      <Router>
+      <HistoryRouter>
         <ApolloProvider client={client}>
           <Header />
 
@@ -141,10 +143,8 @@ export default class App extends React.Component {
             <div className="container">
 
             <Switch>
-              <Route path="/fuck">
-                <h1>FUCK</h1>
-              </Route>
-              <Route path="/users">
+              <Route exact path="/login" render={() => (window.location = AUTH_LOGIN_URL)} />
+              <Route exact path="/users">
                 <Users />
               </Route>
              <Route path="/">
@@ -156,7 +156,7 @@ export default class App extends React.Component {
             </div>
           </section>
         </ApolloProvider>
-      </Router>
+      </HistoryRouter>
     )
   }
 }

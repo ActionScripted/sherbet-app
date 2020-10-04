@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 from celery.schedules import crontab
-from datetime import timedelta
 import environ
 import os
 
@@ -441,6 +440,7 @@ CSRF_COOKIE_DOMAIN = '.sherbet.app'
 CSRF_COOKIE_NAME = 'sherb_csrftoken'
 CSRF_COOKIE_SAMESITE = 'Strict'
 CSRF_COOKIE_SECURE = True
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
 # Trusted origins for "unsafe" requests
 CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS

@@ -11,7 +11,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
 
 const common = require('./webpack.common.js');
-const config = require('./frontend/config.js')
+const { settings } = require('./frontend/settings');
 
 
 module.exports = merge(common, {
@@ -64,8 +64,8 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        config.path.django + '/static/*.{css,js}',
-        config.path.django + '/static/fonts',
+        settings.path.django + '/static/*.{css,js}',
+        settings.path.django + '/static/fonts',
       ],
     }),
     new HtmlWebpackPlugin({
@@ -76,7 +76,7 @@ module.exports = merge(common, {
     }),
     new MiniCssExtractPlugin({filename: '[name].styles.css'}),
     new FaviconsWebpackPlugin({
-      background: config.brand.color,
+      background: settings.brand.color,
       icons: {
         android: true,
         appleIcon: true,
@@ -87,16 +87,16 @@ module.exports = merge(common, {
         windows: true,
         yandex: false
       },
-      logo: path.resolve(__dirname, config.path.frontend, 'images', 'icon.png'),
+      logo: path.resolve(__dirname, settings.path.frontend, 'images', 'icon.png'),
       persistentCache: true,
       prefix: 'icons/',
-      title: config.brand.name
+      title: settings.brand.name
     }),
     new FileManagerPlugin({
       onEnd: {
         copy: [{
-          source: path.resolve(__dirname, config.path.django, 'static', 'icons', 'favicon.ico'),
-          destination: path.resolve(__dirname, config.path.django, 'static', 'favicon.ico'),
+          source: path.resolve(__dirname, settings.path.django, 'static', 'icons', 'favicon.ico'),
+          destination: path.resolve(__dirname, settings.path.django, 'static', 'favicon.ico'),
         }]
       }
     }),

@@ -1,15 +1,15 @@
 const path = require('path');
 
-const config = require('./frontend/config.js')
+const { settings } = require('./frontend/settings');
 
 
 module.exports = {
   entry: {
-    public: path.resolve(__dirname, config.path.frontend, 'public.js'),
+    public: path.resolve(__dirname, settings.path.frontend, 'public.js'),
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, config.path.django, 'static'),
+    path: path.resolve(__dirname, settings.path.django, 'static'),
     publicPath: '/static/'
   },
   module: {
@@ -79,13 +79,13 @@ module.exports = {
   plugins: [],
   resolve: {
     alias: {
-      API: path.resolve(__dirname, config.path.frontend, 'api/'),
-      Client: path.resolve(__dirname, config.path.frontend, 'client/'),
-      Components: path.resolve(__dirname, config.path.frontend, 'components/'),
-      Config: path.resolve(__dirname, config.path.frontend, 'config.js'),
-      Constants: path.resolve(__dirname, config.path.frontend, 'constants/'),
-      Images: path.resolve(__dirname, config.path.frontend, 'images/'),
-      Packages: path.resolve(__dirname, config.path.frontend, 'packages/'),
+      API: path.resolve(__dirname, settings.path.frontend, 'api/'),
+      Client: path.resolve(__dirname, settings.path.frontend, 'client/'),
+      Components: path.resolve(__dirname, settings.path.frontend, 'components/'),
+      Constants: path.resolve(__dirname, settings.path.frontend, 'constants/'),
+      Images: path.resolve(__dirname, settings.path.frontend, 'images/'),
+      Packages: path.resolve(__dirname, settings.path.frontend, 'packages/'),
+      Settings: path.resolve(__dirname, settings.path.frontend, 'settings/'),
     }
   }
 };
