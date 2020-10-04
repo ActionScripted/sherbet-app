@@ -14,7 +14,7 @@ import {
 } from 'react-router-dom';
 
 import { client } from 'Client';
-import { BrowserRouter } from 'Components/Router';
+import { Router } from 'Components/Router';
 import { Header } from 'Components/Header';
 
 
@@ -130,7 +130,7 @@ export default class App extends React.Component {
    */
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <ApolloProvider client={client}>
           <Header />
 
@@ -156,7 +156,7 @@ export default class App extends React.Component {
             </div>
           </section>
         </ApolloProvider>
-      </BrowserRouter>
+      </Router>
     )
   }
 }
