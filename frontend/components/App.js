@@ -5,8 +5,6 @@
 
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { gql } from '@apollo/client';
-import { useQuery } from '@apollo/client';
 import {
   Link,
   Redirect,
@@ -18,66 +16,12 @@ import { AUTH_LOGIN_URL } from 'Constants';
 import { client } from 'Client';
 import { Header } from 'Components/Header';
 import { HistoryRouter } from 'Components/HistoryRouter';
-import { settings } from 'Settings';
+import { Users } from 'Components/Users';
 
 
 const initialState = {
   onUnloadChecks: [],
 };
-
-
-
-const USERS = gql`
-  query {
-    users {
-      edges {
-        node {
-          id
-          isActive
-          username
-        }
-      }
-    }
-  }
-`;
-
-
-function Users() {
-  const { loading, error, data } = useQuery(USERS, {
-    pollInterval: settings.graphql.query.poll_interval,
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  return (
-    <nav className="panel">
-      <p className="panel-heading">Users</p>
-      <div className="panel-block">
-        <p className="control has-icons-left">
-          <input className="input" type="text" placeholder="Search" />
-          <span className="icon is-left">
-            <span className="material-icons" aria-hidden="true">search</span>
-          </span>
-        </p>
-      </div>
-      <p className="panel-tabs">
-        <a className="is-active">All</a>
-        <a>Active</a>
-        <a>Inactive</a>
-      </p>
-
-      {data.users.edges.map(({ node }) => (
-        <a className="panel-block" key={node.id}>
-          {node.isActive
-            ? <strong>{node.username}</strong>
-            : <>{node.username}</>
-          }
-        </a>
-      ))}
-    </nav>
-  );
-}
 
 
 export default class App extends React.Component {
@@ -139,9 +83,6 @@ export default class App extends React.Component {
       <HistoryRouter>
         <ApolloProvider client={client}>
           <Header />
-
-          <Link to="/">Home</Link>
-          <Link to="/users">Users</Link>
 
           <section className="section">
             <div className="container">

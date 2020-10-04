@@ -13,10 +13,13 @@ from sherbet.admin import admin_site
 
 # Standard (Django) URL patters
 urlpatterns = [
+    # App
     path('', include('sherbet.pages.urls', namespace='pages')),
+    # Auth
     path('admin/', admin_site.urls),
-    path('graphql', GraphQLView.as_view(graphiql=True)),
     path('hijack/', include('hijack.urls', namespace='hijack')),
+    # GraphQL
+    path('graphql', GraphQLView.as_view(graphiql=True)),
 ]
 
 if settings.DEBUG:

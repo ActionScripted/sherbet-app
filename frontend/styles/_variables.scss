@@ -1,3 +1,18 @@
-html {
-  font-family: sans-serif;
-}
+// Set your brand colors
+$purple: #8A4D76;
+$pink: #d80058;
+$brown: #757763;
+$beige-light: #D0D1CD;
+$beige-lighter: #EFF0EB;
+
+// Update Bulma's global variables
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $pink;
+$link: $purple;
+
+// Update some of Bulma's component variables
+$body-background-color: $beige-lighter;
+$panel-heading-background-color: $purple;
+$panel-heading-color: $beige-lighter;
+$control-border-width: 2px;
