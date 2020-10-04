@@ -1,6 +1,7 @@
 from graphene import Node
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
+import graphene
 
 from sherbet.users.models import User
 
@@ -23,6 +24,6 @@ class UserNode(DjangoObjectType):
         model = User
 
 
-class Query(object):
-    all_users = DjangoFilterConnectionField(UserNode)
+class Query(graphene.ObjectType):
+    users = DjangoFilterConnectionField(UserNode)
     user = Node.Field(UserNode)

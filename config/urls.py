@@ -1,11 +1,11 @@
 """URL Configuration
 """
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.urls import include
 from django.urls import path
 from django.views import defaults as default_views
 from django.views.csrf import csrf_failure
-from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
 from sherbet.admin import admin_site
@@ -15,11 +15,9 @@ from sherbet.admin import admin_site
 urlpatterns = [
     path('', include('sherbet.pages.urls', namespace='pages')),
     path('admin/', admin_site.urls),
+    path('graphql', GraphQLView.as_view(graphiql=True)),
     path('hijack/', include('hijack.urls', namespace='hijack')),
-    # TODO: remove csrf_exempt
-    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
-
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

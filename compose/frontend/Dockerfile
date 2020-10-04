@@ -25,7 +25,7 @@ RUN npm install --verbose
 
 # Frontend / Scripts: setup
 USER root
-COPY ./.babelrc .babelrc
+COPY ./babel.config.json ./babel.config.json
 COPY ./compose/frontend/start.sh ./compose/frontend/start.sh
 COPY ./frontend ./frontend
 COPY ./webpack.common.js ./webpack.common.js

@@ -1,31 +1,32 @@
-
 /**
  * App
  * ---
  */
 
 import React from 'react';
-import { ApolloClient } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
-import { InMemoryCache } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/client';
+import {
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
+
+import { client } from 'Client';
+import { BrowserRouter } from 'Components/Router';
+import { Header } from 'Components/Header';
 
 
 const initialState = {
   onUnloadChecks: [],
 };
 
-// TODO: MOVE THIS
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: '/graphql'
-});
 
 
 const USERS = gql`
   query {
-    allUsers {
+    users {
       edges {
         node {
           id
@@ -43,14 +44,14 @@ function Users() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.allUsers.edges.map(({ node }) => (
+  return (
     <nav className="panel">
       <p className="panel-heading">Users</p>
       <div className="panel-block">
         <p className="control has-icons-left">
           <input className="input" type="text" placeholder="Search" />
           <span className="icon is-left">
-            <span class="material-icons" aria-hidden="true">search</span>
+            <span className="material-icons" aria-hidden="true">search</span>
           </span>
         </p>
       </div>
@@ -59,14 +60,17 @@ function Users() {
         <a>Active</a>
         <a>Inactive</a>
       </p>
-      <a className="panel-block" key={node.id}>
-        {node.isActive
-          ? <strong>{node.username}</strong>
-          : <>{node.username}</>
-        }
-      </a>
+
+      {data.users.edges.map(({ node }) => (
+        <a className="panel-block" key={node.id}>
+          {node.isActive
+            ? <strong>{node.username}</strong>
+            : <>{node.username}</>
+          }
+        </a>
+      ))}
     </nav>
-  ));
+  );
 }
 
 
@@ -126,23 +130,33 @@ export default class App extends React.Component {
    */
   render() {
     return (
-      <ApolloProvider client={client}>
-        <section class="section">
-          <div class="container">
-            <h1 class="title">
-              Sherbet
-            </h1>
-            <p class="subtitle">
-              Django, React, GraphQL...ready to rock.
-            </p>
-          </div>
-        </section>
-        <section class="section">
-          <div class="container">
-            <Users />
-          </div>
-        </section>
-      </ApolloProvider>
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <Header />
+
+          <Link to="/">Home</Link>
+          <Link to="/users">Users</Link>
+
+          <section className="section">
+            <div className="container">
+
+            <Switch>
+              <Route path="/fuck">
+                <h1>FUCK</h1>
+              </Route>
+              <Route path="/users">
+                <Users />
+              </Route>
+             <Route path="/">
+                <h1 className="title">Sherbet</h1>
+                <p className="subtitle">Django, React, GraphQL...ready to rock.</p>
+              </Route>
+            </Switch>
+
+            </div>
+          </section>
+        </ApolloProvider>
+      </BrowserRouter>
     )
   }
 }

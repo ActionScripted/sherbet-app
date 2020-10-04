@@ -8,10 +8,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from celery.schedules import crontab
+from datetime import timedelta
 import environ
 import os
-
-from celery.schedules import crontab
 
 
 # BASE
@@ -86,8 +86,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Auth: Backends
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 # Auth: Password validation
@@ -245,7 +245,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Detroit'
 
 
-# GRAPHENE
+# GRAPHQL (Graphene)
 # ------------------------------------------------------------------------------
 
 # Graphene: Configuration
@@ -382,6 +382,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'global_login_required.GlobalLoginRequiredMiddleware',
 ]
 
 

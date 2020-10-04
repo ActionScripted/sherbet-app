@@ -80,6 +80,7 @@ module.exports = {
   resolve: {
     alias: {
       API: path.resolve(__dirname, config.path.frontend, 'api/'),
+      Client: path.resolve(__dirname, config.path.frontend, 'client/'),
       Components: path.resolve(__dirname, config.path.frontend, 'components/'),
       Config: path.resolve(__dirname, config.path.frontend, 'config.js'),
       Constants: path.resolve(__dirname, config.path.frontend, 'constants/'),
