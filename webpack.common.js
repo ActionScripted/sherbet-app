@@ -83,6 +83,7 @@ module.exports = {
       Client: path.resolve(__dirname, settings.path.frontend, 'client/'),
       Components: path.resolve(__dirname, settings.path.frontend, 'components/'),
       Constants: path.resolve(__dirname, settings.path.frontend, 'constants/'),
+      Contexts: path.resolve(__dirname, settings.path.frontend, 'contexts/'),
       Images: path.resolve(__dirname, settings.path.frontend, 'images/'),
       Packages: path.resolve(__dirname, settings.path.frontend, 'packages/'),
       Settings: path.resolve(__dirname, settings.path.frontend, 'settings/'),

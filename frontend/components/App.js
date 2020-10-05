@@ -9,19 +9,13 @@ import {
   gql,
   useQuery
 } from '@apollo/client';
-import {
-  Link,
-  Redirect,
-  Route,
-  Switch
-} from 'react-router-dom';
 import { Query } from '@apollo/client/react/components';
 
 import { AUTH_LOGIN_URL } from 'Constants';
 import { client } from 'Client';
-import { Header } from 'Components/Header';
 import { HistoryRouter } from 'Components/HistoryRouter';
-import { Users } from 'Components/Users';
+import { UserContext } from 'Contexts';
+import { Layout } from 'Components/Layout';
 
 
 const GET_USER = gql`
@@ -49,7 +43,6 @@ export default class App extends React.Component {
     // State
     this.state = {
       onUnloadChecks: [],
-      user: null,
     };
   }
 
@@ -101,40 +94,17 @@ export default class App extends React.Component {
     return (
       <HistoryRouter>
         <ApolloProvider client={client}>
-
-          <Header />
-
-          <section className="section">
-            <div className="container">
-              <Query query={GET_USER}>
-                {({ loading, error, data }) => {
-                    if (loading) return <div>Fetching</div>
-                    if (error) return <div>Error</div>
-
-                  return (
-                    <div>Hey, {data.user.username}</div>
-                  )
-                }}
-              </Query>
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="container">
-
-            <Switch>
-              <Route exact path="/login/" render={() => (window.location = AUTH_LOGIN_URL)} />
-              <Route exact path="/users/">
-                <Users />
-              </Route>
-             <Route path="/">
-                <h1 className="title">Sherbet</h1>
-                <p className="subtitle">Django, React, GraphQL...ready to rock.</p>
-              </Route>
-            </Switch>
-
-            </div>
-          </section>
+          <Query query={GET_USER}>
+            {({ loading, error, data }) => {
+              if (loading) return <div>Fetching</div>
+              if (error) return <div>Error</div>
+              return (
+                <UserContext.Provider value={data.user}>
+                  <Layout />
+                </UserContext.Provider>
+              )
+            }}
+          </Query>
         </ApolloProvider>
       </HistoryRouter>
     )

@@ -10,16 +10,74 @@ import { Link, NavLink } from 'react-router-dom';
 import Logo from 'Images/logo.svg';
 
 
-class BulmaNavLink extends React.Component {
+function BulmaNavLink(props) {
+  return (
+    <NavLink
+      activeClassName="is-active"
+      className="navbar-item"
+      exact
+      to={props.to}
+    >{props.children}</NavLink>
+  )
+}
+
+
+export class UserMenu extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.dropdown = React.createRef();
+
+    this.handleClickOutside= this.handleClickOutside.bind(this);
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleClickOutside(evt) {
+    if (!this.dropdown.current.contains(evt.target)) {
+      this.dropdown.current.classList.remove('is-active');
+    }
+  }
+
+  handleDropdownClick(evt) {
+    this.dropdown.current.classList.toggle('is-active');
+  }
+
   render() {
-    return(
-      <NavLink
-        activeClassName="is-active"
-        className="navbar-item"
-        exact
-        to={this.props.to}
-      >{this.props.children}</NavLink>
-    )
+    const user = this.props.user;
+
+    if (user.isAuthenticated) {
+      return (
+        <>
+          <div class="navbar-item has-dropdown" ref={this.dropdown}>
+            <a class="navbar-link" onClick={this.handleDropdownClick}>{user.username}</a>
+            <div class="navbar-dropdown">
+              <div class="navbar-item">Settings</div>
+              <hr class="navbar-divider" />
+              <Link className="button is-light" to="/logout/">Sign Out</Link>
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <div className="navbar-item">
+          <div className="buttons">
+            <Link className="button is-primary" to="/register/">
+              <strong>Sign up</strong>
+            </Link>
+            <Link className="button is-light" to="/login/">Log in</Link>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
@@ -33,7 +91,13 @@ export default class NavBar extends React.Component {
             <img src={Logo} alt="Sherbet: Home" />
           </a>
 
-          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a
+            aria-expanded="false"
+            aria-label="menu"
+            className="navbar-burger burger"
+            data-target="navbarBasicExample"
+            role="button"
+          >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -47,14 +111,7 @@ export default class NavBar extends React.Component {
           </div>
 
           <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <Link className="button is-primary" to="/register/">
-                  <strong>Sign up</strong>
-                </Link>
-                <Link className="button is-light" to="/login/">Log in</Link>
-              </div>
-            </div>
+            <UserMenu user={this.props.user} />
           </div>
         </div>
       </nav>
