@@ -107,7 +107,12 @@ LOGIN_URL = '/admin/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Auth: Public (no login) views (not technically needed...)
+# Auth: Public (no login) paths
+PUBLIC_PATHS = [
+    r'^/admin/login/',
+]
+
+# Auth: Public (no login) views
 PUBLIC_VIEWS = [
     'django.views.csrf.csrf_failure',
     'django.views.defaults.bad_request',

@@ -4,13 +4,18 @@
  */
 
 import React from 'react';
-import { ApolloProvider } from '@apollo/client';
+import {
+  ApolloProvider,
+  gql,
+  useQuery
+} from '@apollo/client';
 import {
   Link,
   Redirect,
   Route,
   Switch
 } from 'react-router-dom';
+import { Query } from '@apollo/client/react/components';
 
 import { AUTH_LOGIN_URL } from 'Constants';
 import { client } from 'Client';
@@ -19,9 +24,19 @@ import { HistoryRouter } from 'Components/HistoryRouter';
 import { Users } from 'Components/Users';
 
 
-const initialState = {
-  onUnloadChecks: [],
-};
+const GET_USER = gql`
+  query {
+    user {
+      dateJoined
+      email
+      firstName
+      isActive
+      isAuthenticated
+      lastName
+      username
+    }
+  }
+`;
 
 
 export default class App extends React.Component {
@@ -30,8 +45,12 @@ export default class App extends React.Component {
 
     // Window
     this.onUnload = this.onUnload.bind(this);
+
     // State
-    this.state = {...initialState};
+    this.state = {
+      onUnloadChecks: [],
+      user: null,
+    };
   }
 
   /**
@@ -82,14 +101,30 @@ export default class App extends React.Component {
     return (
       <HistoryRouter>
         <ApolloProvider client={client}>
+
           <Header />
+
+          <section className="section">
+            <div className="container">
+              <Query query={GET_USER}>
+                {({ loading, error, data }) => {
+                    if (loading) return <div>Fetching</div>
+                    if (error) return <div>Error</div>
+
+                  return (
+                    <div>Hey, {data.user.username}</div>
+                  )
+                }}
+              </Query>
+            </div>
+          </section>
 
           <section className="section">
             <div className="container">
 
             <Switch>
-              <Route exact path="/login" render={() => (window.location = AUTH_LOGIN_URL)} />
-              <Route exact path="/users">
+              <Route exact path="/login/" render={() => (window.location = AUTH_LOGIN_URL)} />
+              <Route exact path="/users/">
                 <Users />
               </Route>
              <Route path="/">
