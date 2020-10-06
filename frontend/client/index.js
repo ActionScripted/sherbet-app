@@ -14,9 +14,6 @@ import { history } from 'Components/HistoryRouter';
 import { settings } from 'Settings';
 
 
-const status_codes_auth = [401, 403];
-
-
 const CsrfLink = setContext((_, { headers }) => {
   const token = Cookies.get(settings.csrf.cookie_name);
 
@@ -34,7 +31,6 @@ const NetworkErrorsLink = onError(error => {
   if (error.graphQLErrors) {}
 
   if (error.networkError) {
-    // TODO: move to config/settings
     if ([401, 403].includes(error.networkError.statusCode)) {
       history.push('/login', true);
     }
@@ -42,14 +38,12 @@ const NetworkErrorsLink = onError(error => {
 });
 
 
-const link = from([
-  CsrfLink,
-  NetworkErrorsLink,
-  new HttpLink({uri: GRAPHQL_URL})
-]);
-
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'same-origin',
-  link,
+  link: from([
+    CsrfLink,
+    NetworkErrorsLink,
+    new HttpLink({uri: GRAPHQL_URL})
+  ])
 });
