@@ -6,7 +6,9 @@ import {
   Switch
 } from 'react-router-dom';
 
+import { AUTH_LOGIN_URL } from 'Constants';
 import { Header } from 'Components/Header';
+import { UserContext } from 'Contexts';
 import { Users } from 'Components/Users';
 
 
@@ -15,26 +17,24 @@ export class Layout extends React.Component {
     return (
       <>
         <Header />
-
         <section className="section">
           <div className="container">
-          </div>
-        </section>
+            <Switch>
+              <Route exact path="/login/">
+                <p>
+                  <strong>You rock but...</strong> you need to <a href={AUTH_LOGIN_URL}>log in</a>.
+                </p>
+              </Route>
 
-        <section className="section">
-          <div className="container">
+              <Route exact path="/users/">
+                <Users />
+              </Route>
 
-          <Switch>
-            <Route exact path="/login/" render={() => (window.location = AUTH_LOGIN_URL)} />
-            <Route exact path="/users/">
-              <Users />
-            </Route>
-            <Route path="/">
-              <h1 className="title">Sherbet</h1>
-              <p className="subtitle">Django, React, GraphQL...ready to rock.</p>
-            </Route>
-          </Switch>
-
+              <Route path="/">
+                <h1 className="title">Sherbet</h1>
+                <p className="subtitle">Django, React, GraphQL...ready to rock.</p>
+              </Route>
+            </Switch>
           </div>
         </section>
       </>

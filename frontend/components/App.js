@@ -1,21 +1,18 @@
 /**
  * App
- * ---
  */
 
 import React from 'react';
-import {
-  ApolloProvider,
-  gql,
-  useQuery
-} from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { Query } from '@apollo/client/react/components';
+import { useContext } from 'react';
+import { useQuery } from '@apollo/client';
 
-import { AUTH_LOGIN_URL } from 'Constants';
 import { client } from 'Client';
-import { HistoryRouter } from 'Components/HistoryRouter';
-import { UserContext } from 'Contexts';
 import { Layout } from 'Components/Layout';
+import { Router } from 'Components/Router';
+import { UserContext } from 'Contexts';
 
 
 const GET_USER = gql`
@@ -37,31 +34,17 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // Window
     this.onUnload = this.onUnload.bind(this);
-
-    // State
-    this.state = {
-      onUnloadChecks: [],
-    };
+    this.state = {onUnloadChecks: []};
   }
 
-  /**
-   * Component added to tree.
-   * Runs once.
-   */
   componentDidMount() {
     window.addEventListener('beforeunload', this.onUnload);
   }
 
-  /**
-   * Component queued for removal from tree.
-   * Runs once.
-   */
   componentWillUnmount() {
     window.removeEventListener('beforeunload', this.onUnload);
   }
-
 
   /**
    * App-level unload; runs checks (if any).
@@ -86,27 +69,29 @@ export default class App extends React.Component {
     }
   }
 
-
-  /**
-   * THE MAIN EVENT (well...not an event).
-   */
   render() {
     return (
-      <HistoryRouter>
+      <Router>
         <ApolloProvider client={client}>
-          <Query query={GET_USER}>
-            {({ loading, error, data }) => {
-              if (loading) return <div>Fetching</div>
-              if (error) return <div>Error</div>
-              return (
-                <UserContext.Provider value={data.user}>
-                  <Layout />
-                </UserContext.Provider>
-              )
-            }}
-          </Query>
+          <Query query={GET_USER}>{(result) => {
+            let user = useContext(UserContext)
+
+            if (result.data && result.data.user) {
+              user = result.data.user;
+            }
+
+            return (
+              <UserContext.Provider value={user}>
+                <Layout
+                  error={result.error}
+                  loading={result.loading}
+                  user={user}
+                />
+              </UserContext.Provider>
+            )
+          }}</Query>
         </ApolloProvider>
-      </HistoryRouter>
+      </Router>
     )
   }
 }

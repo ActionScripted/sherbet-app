@@ -4,6 +4,6 @@ import { createBrowserHistory } from "history";
 
 export const history = createBrowserHistory();
 
-export class HistoryRouter extends BrowserRouter {
+export class Router extends BrowserRouter {
   history = history;
 }

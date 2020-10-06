@@ -41,7 +41,7 @@ export class UserMenu extends React.Component {
   }
 
   handleClickOutside(evt) {
-    if (!this.dropdown.current.contains(evt.target)) {
+    if (this.dropdown.current && !this.dropdown.current.contains(evt.target)) {
       this.dropdown.current.classList.remove('is-active');
     }
   }
@@ -84,12 +84,14 @@ export class UserMenu extends React.Component {
 
 export default class NavBar extends React.Component {
   render() {
+    const { user } = this.props;
+
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/">
+          <Link className="navbar-item" to="/">
             <img src={Logo} alt="Sherbet: Home" />
-          </a>
+          </Link>
 
           <a
             aria-expanded="false"
@@ -107,11 +109,13 @@ export default class NavBar extends React.Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <BulmaNavLink to="/">Home</BulmaNavLink>
-            <BulmaNavLink to="/users/">Users</BulmaNavLink>
+            {user.isAuthenticated &&
+              <BulmaNavLink to="/users/">Users</BulmaNavLink>
+            }
           </div>
 
           <div className="navbar-end">
-            <UserMenu user={this.props.user} />
+            <UserMenu user={user} />
           </div>
         </div>
       </nav>

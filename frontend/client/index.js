@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 
 
 import { GRAPHQL_URL } from 'Constants';
-import { history } from 'Components/HistoryRouter';
+import { history } from 'Components/Router';
 import { settings } from 'Settings';
 
 
@@ -28,11 +28,11 @@ const CsrfLink = setContext((_, { headers }) => {
 
 
 const NetworkErrorsLink = onError(error => {
-  if (error.graphQLErrors) {}
-
   if (error.networkError) {
-    if ([401, 403].includes(error.networkError.statusCode)) {
-      history.push('/login', true);
+    if (error.networkError.response.redirected
+      || [401, 403].includes(error.networkError.statusCode))
+    {
+      history.push('/login/', true);
     }
   }
 });
