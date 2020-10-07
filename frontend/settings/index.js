@@ -5,18 +5,22 @@
  */
 
 const settings = {
+  auth: {
+    csrf: {
+      cookieName: 'sherb_csrftoken',
+      headerName: 'X-CSRFToken',
+    },
+    loginUrl: '/admin/login/?next=/'
+  },
   brand: {
     color: '#d80058',
     name: 'Sherbet',
   },
-  csrf: {
-    cookie_name: 'sherb_csrftoken',
-    header_name: 'X-CSRFToken',
-  },
   graphql: {
     query: {
-      poll_interval: 30000,
-    }
+      pollInterval: 30000,
+    },
+    uri: '/graphql'
   },
   path: {
     django: 'sherbet',

@@ -9,9 +9,9 @@ import { Query } from '@apollo/client/react/components';
 import { useContext } from 'react';
 import { useQuery } from '@apollo/client';
 
+import Layout from 'Components/Layout';
+import Router from 'Components/Router';
 import { client } from 'Client';
-import { Layout } from 'Components/Layout';
-import { Router } from 'Components/Router';
 import { UserContext } from 'Contexts';
 
 
@@ -79,6 +79,8 @@ export default class App extends React.Component {
             if (result.data && result.data.user) {
               user = result.data.user;
             }
+
+            console.log(result);
 
             return (
               <UserContext.Provider value={user}>

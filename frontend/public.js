@@ -12,4 +12,8 @@ const appContainer = document.getElementById('sherbet-app');
 const appData = {};
 const appProps = {};
 
-ReactDOM.render(<App data={appData} {...appProps} />, appContainer);
+
+ReactDOM.render(
+  <App data={appData} {...appProps} />,
+  appContainer
+);

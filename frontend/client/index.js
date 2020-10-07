@@ -9,19 +9,18 @@ import { setContext } from "@apollo/client/link/context";
 import Cookies from 'js-cookie';
 
 
-import { GRAPHQL_URL } from 'Constants';
 import { history } from 'Components/Router';
 import { settings } from 'Settings';
 
 
 const CsrfLink = setContext((_, { headers }) => {
-  const token = Cookies.get(settings.csrf.cookie_name);
+  const token = Cookies.get(settings.auth.csrf.cookieName);
 
   // TODO: redirect to (client) error view if no token? how the
   // eff do they not have the cookie? JS on, cookies off?
 
   if (!headers) headers = {};
-  headers[settings.csrf.header_name] = token;
+  headers[settings.auth.csrf.headerName] = token;
 
   return { headers }
 });
@@ -44,6 +43,6 @@ export const client = new ApolloClient({
   link: from([
     CsrfLink,
     NetworkErrorsLink,
-    new HttpLink({uri: GRAPHQL_URL})
+    new HttpLink({uri: settings.graphql.uri})
   ])
 });

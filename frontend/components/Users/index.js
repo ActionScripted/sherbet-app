@@ -20,9 +20,9 @@ const USERS = gql`
 `;
 
 
-export function Users() {
+export default function Users() {
   const { loading, error, data } = useQuery(USERS, {
-    pollInterval: settings.graphql.query.poll_interval,
+    pollInterval: settings.graphql.query.pollInterval,
   });
 
   if (loading) return <p>Loading...</p>;
