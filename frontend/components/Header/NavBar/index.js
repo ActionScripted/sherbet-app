@@ -19,7 +19,7 @@ function BulmaNavLink(props) {
       exact
       to={props.to}
     >{props.children}</NavLink>
-  )
+  );
 }
 
 
@@ -47,7 +47,7 @@ export class UserMenu extends React.Component {
     }
   }
 
-  handleDropdownClick(evt) {
+  handleDropdownClick() {
     this.dropdown.current.classList.toggle('is-active');
   }
 
@@ -57,11 +57,11 @@ export class UserMenu extends React.Component {
     if (user.isAuthenticated) {
       return (
         <>
-          <div class="navbar-item has-dropdown" ref={this.dropdown}>
-            <a class="navbar-link" onClick={this.handleDropdownClick}>{user.username}</a>
-            <div class="navbar-dropdown">
-              <div class="navbar-item">Settings</div>
-              <hr class="navbar-divider" />
+          <div className="navbar-item has-dropdown" ref={this.dropdown}>
+            <a className="navbar-link" onClick={this.handleDropdownClick}>{user.username}</a>
+            <div className="navbar-dropdown">
+              <div className="navbar-item">Settings</div>
+              <hr className="navbar-divider" />
               <Link className="button is-light" to="/logout/">Sign Out</Link>
             </div>
           </div>

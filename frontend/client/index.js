@@ -4,8 +4,8 @@ import {
   InMemoryCache,
   from,
 } from '@apollo/client';
-import { onError } from "@apollo/client/link/error";
-import { setContext } from "@apollo/client/link/context";
+import { onError } from '@apollo/client/link/error';
+import { setContext } from '@apollo/client/link/context';
 import Cookies from 'js-cookie';
 
 
@@ -22,12 +22,13 @@ const CsrfLink = setContext((_, { headers }) => {
   if (!headers) headers = {};
   headers[settings.auth.csrf.headerName] = token;
 
-  return { headers }
+  return { headers };
 });
 
 
 const NetworkErrorsLink = onError(error => {
   if (error.networkError) {
+    // TODO: check for error.networkError.response
     if (error.networkError.response.redirected
       || [401, 403].includes(error.networkError.statusCode))
     {

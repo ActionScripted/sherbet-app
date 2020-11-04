@@ -1,17 +1,17 @@
 import React from 'react';
 
 import NavBar from 'Components/Header/NavBar';
-import { UserContext } from 'Contexts';
+import { AuthContext } from 'Contexts';
 
 
 export default class Header extends React.Component {
   render() {
     return (
-      <UserContext.Consumer>
+      <AuthContext.Consumer>
         {user => (
           <NavBar user={user} />
         )}
-      </UserContext.Consumer>
+      </AuthContext.Consumer>
     );
   }
 }

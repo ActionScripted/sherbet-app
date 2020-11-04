@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Link,
-  Redirect,
   Route,
   Switch
 } from 'react-router-dom';
@@ -27,6 +25,6 @@ export default class Layout extends React.Component {
           </div>
         </section>
       </>
-    )
+    );
   }
 }

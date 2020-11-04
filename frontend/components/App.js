@@ -3,16 +3,14 @@
  */
 
 import React from 'react';
-import { ApolloProvider } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { Query } from '@apollo/client/react/components';
 import { useContext } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 import Layout from 'Components/Layout';
-import Router from 'Components/Router';
-import { client } from 'Client';
-import { UserContext } from 'Contexts';
+import { AuthContext } from 'Contexts';
 
 
 const GET_USER = gql`
@@ -29,6 +27,26 @@ const GET_USER = gql`
   }
 `;
 
+
+export function AppNew() {
+  const { loading, error } = useQuery(GET_USER);
+
+  useEffect(() => {
+    return function cleanup() {
+      // TODO
+    };
+  });
+
+  return (
+    <AuthContext.Provider value={user}>
+      <Layout
+        error={error}
+        loading={loading}
+        user={user}
+      />
+    </AuthContext.Provider>
+  );
+}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -71,29 +89,25 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <ApolloProvider client={client}>
-          <Query query={GET_USER}>{(result) => {
-            let user = useContext(UserContext)
+      <Query query={GET_USER}>{(result) => {
+        let user = useContext(AuthContext);
 
-            if (result.data && result.data.user) {
-              user = result.data.user;
-            }
+        if (result.data && result.data.user) {
+          user = result.data.user;
+        }
 
-            console.log(result);
+        console.log(result);
 
-            return (
-              <UserContext.Provider value={user}>
-                <Layout
-                  error={result.error}
-                  loading={result.loading}
-                  user={user}
-                />
-              </UserContext.Provider>
-            )
-          }}</Query>
-        </ApolloProvider>
-      </Router>
-    )
+        return (
+          <AuthContext.Provider value={user}>
+            <Layout
+              error={result.error}
+              loading={result.loading}
+              user={user}
+            />
+          </AuthContext.Provider>
+        );
+      }}</Query>
+    );
   }
 }

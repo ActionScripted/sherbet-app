@@ -10,7 +10,7 @@ const settings = {
       cookieName: 'sherb_csrftoken',
       headerName: 'X-CSRFToken',
     },
-    loginUrl: '/admin/login/?next=/'
+    loginUrl: '/login/',
   },
   brand: {
     color: '#d80058',

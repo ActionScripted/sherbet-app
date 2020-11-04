@@ -3,17 +3,19 @@ import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ApolloProvider } from '@apollo/client';
 
 import './public.scss';
 import App from 'Components/App';
-
-
-const appContainer = document.getElementById('sherbet-app');
-const appData = {};
-const appProps = {};
+import Router from 'Components/Router';
+import { client } from 'Client';
 
 
 ReactDOM.render(
-  <App data={appData} {...appProps} />,
-  appContainer
+  <ApolloProvider client={client}>
+    <Router>
+      <App />
+    </Router>
+  </ApolloProvider>,
+  document.getElementById('sherbet-app')
 );
