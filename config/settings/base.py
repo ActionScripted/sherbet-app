@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'users.User'
 
 # Auth: Login redirect
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/login/'
 
 # Auth: Post-login/logout redirect
 LOGIN_REDIRECT_URL = '/'
@@ -110,10 +110,13 @@ LOGOUT_REDIRECT_URL = '/'
 # Auth: Public (no login) paths
 PUBLIC_PATHS = [
     r'^/admin/login/',
+    r'^/admin/logout/',
 ]
 
 # Auth: Public (no login) views
 PUBLIC_VIEWS = [
+    'django.contrib.auth.views.LoginView',
+    'django.contrib.auth.views.LogoutView',
     'django.views.csrf.csrf_failure',
     'django.views.defaults.bad_request',
     'django.views.defaults.page_not_found',

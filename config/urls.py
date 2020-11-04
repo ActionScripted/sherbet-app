@@ -15,6 +15,7 @@ from sherbet.admin import admin_site
 urlpatterns = [
     # App
     path('', include('sherbet.pages.urls', namespace='pages')),
+    path('', include('sherbet.users.urls', namespace='users')),
     # Auth
     path('admin/', admin_site.urls),
     path('hijack/', include('hijack.urls', namespace='hijack')),
