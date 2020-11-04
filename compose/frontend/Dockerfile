@@ -33,8 +33,6 @@ COPY ./webpack.development.js ./webpack.development.js
 COPY ./webpack.production.js ./webpack.production.js
 RUN chmod +x ./compose/frontend/start.sh
 
-# Service user: re-chown
-RUN chown -R django:django /home/django
 # Service user: re-chown (again; skip node_modules)
 RUN chown -R django:django /home/django/srv/compose/ && \
     chown -R django:django /home/django/srv/frontend/ && \
