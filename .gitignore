@@ -12,8 +12,6 @@
 Icon
 
 # Environment
-/compose/docker-compose.override.yml
-/compose/local.env
 /docker-compose.override.yml
 /venv
 

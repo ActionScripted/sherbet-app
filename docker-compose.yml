@@ -18,7 +18,7 @@ services:
       - memcached
       - postgres
     env_file:
-      - ./compose/local.env
+      - ./.env
     image: sherbet_django
     ports:
       - "8000:8000"
@@ -31,7 +31,7 @@ services:
     depends_on:
       - rabbitmq
     env_file:
-      - ./compose/local.env
+      - ./.env
     image: sherbet_django:latest
     user: django
     volumes:
@@ -51,7 +51,7 @@ services:
       dockerfile: ./compose/frontend/Dockerfile
     command: ./compose/frontend/start.sh
     env_file:
-      - ./compose/local.env
+      - ./.env
     ports:
       - "3000:3000"
       - "8888:8888"
@@ -66,13 +66,13 @@ services:
     image: memcached:1
   postgres:
     env_file:
-      - ./compose/local.env
+      - ./.env
     image: postgres:13
     volumes:
       - pgdata:/var/lib/postgresql/data
   rabbitmq:
     env_file:
-      - ./compose/local.env
+      - ./.env
     image: rabbitmq:3
 
 volumes:

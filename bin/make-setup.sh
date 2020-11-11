@@ -10,7 +10,7 @@
 
 
 # Variables
-compose_env="./compose/local.env"
+compose_env="./.env"
 
 case "$(uname -s)" in
   # macOS (BSD)
