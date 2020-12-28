@@ -1,15 +1,14 @@
 const path = require('path');
-
-const { settings } = require('./frontend/settings');
+const webpack = require('webpack');
 
 
 module.exports = {
   entry: {
-    public: path.resolve(__dirname, settings.path.frontend, 'public.js'),
+    public: path.resolve(__dirname, process.env.FRONTEND_DIR, 'public.js'),
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, settings.path.django, 'static'),
+    path: path.resolve(__dirname, process.env.DJANGO_DIR, 'static'),
     publicPath: '/static/'
   },
   module: {
@@ -76,17 +75,21 @@ module.exports = {
       }
     ]
   },
-  plugins: [],
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      AUTH_LOGIN_URL: process.env.AUTH_LOGIN_URL,
+    }),
+  ],
   resolve: {
     alias: {
-      API: path.resolve(__dirname, settings.path.frontend, 'api/'),
-      Client: path.resolve(__dirname, settings.path.frontend, 'client/'),
-      Components: path.resolve(__dirname, settings.path.frontend, 'components/'),
-      Constants: path.resolve(__dirname, settings.path.frontend, 'constants/'),
-      Contexts: path.resolve(__dirname, settings.path.frontend, 'contexts/'),
-      Images: path.resolve(__dirname, settings.path.frontend, 'images/'),
-      Packages: path.resolve(__dirname, settings.path.frontend, 'packages/'),
-      Settings: path.resolve(__dirname, settings.path.frontend, 'settings/'),
+      API: path.resolve(__dirname, process.env.FRONTEND_DIR, 'api/'),
+      Client: path.resolve(__dirname, process.env.FRONTEND_DIR, 'client/'),
+      Components: path.resolve(__dirname, process.env.FRONTEND_DIR, 'components/'),
+      Constants: path.resolve(__dirname, process.env.FRONTEND_DIR, 'constants/'),
+      Contexts: path.resolve(__dirname, process.env.FRONTEND_DIR, 'contexts/'),
+      Images: path.resolve(__dirname, process.env.FRONTEND_DIR, 'images/'),
+      Packages: path.resolve(__dirname, process.env.FRONTEND_DIR, 'packages/'),
+      Settings: path.resolve(__dirname, process.env.FRONTEND_DIR, 'settings/'),
     }
   }
 };

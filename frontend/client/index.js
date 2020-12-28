@@ -32,7 +32,7 @@ const NetworkErrorsLink = onError(error => {
     if (error.networkError.response.redirected
       || [401, 403].includes(error.networkError.statusCode))
     {
-      history.push('/login/', true);
+      history.push(settings.auth.loginPath, true);
     }
   }
 });

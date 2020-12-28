@@ -96,8 +96,6 @@ export default class App extends React.Component {
           user = result.data.user;
         }
 
-        console.log(result);
-
         return (
           <AuthContext.Provider value={user}>
             <Layout

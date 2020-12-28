@@ -4,13 +4,15 @@
  * Project-wide configuration and settings.
  */
 
+
 const settings = {
   auth: {
     csrf: {
       cookieName: 'sherb_csrftoken',
       headerName: 'X-CSRFToken',
     },
-    loginUrl: '/login/',
+    loginPath: '/login/',
+    loginUrl: process.env.AUTH_LOGIN_URL,
   },
   brand: {
     color: '#d80058',
