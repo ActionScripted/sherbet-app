@@ -69,6 +69,10 @@ else
   echo "...already exists!"
 fi
 
+
+echo "Installing NPM modules (for IDEs, etc.)..."
+npm install
+
 echo "---"
 echo "All set! Edit and verify $compose_env, then run:"
 echo "  docker-compose up"
