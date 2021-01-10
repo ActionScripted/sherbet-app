@@ -8,11 +8,15 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended'
   ],
-  'parser': 'babel-eslint',
+  'parser': '@babel/eslint-parser',
   'parserOptions': {
+    'ecmaFeatures': {
+      'jsx': true
+    },
     'ecmaVersion': 6,
-    'sourceType': 'module'
+    'sourceType': 'module',
   },
+  'root': true,
   'rules': {
     'indent': ['error', 2, {'SwitchCase': 1}],
     'linebreak-style': ['error', 'unix'],

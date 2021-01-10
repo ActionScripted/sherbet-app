@@ -13,6 +13,11 @@ import { history } from 'Components/Router';
 import { settings } from 'Settings';
 
 
+function RedirectToAuth() {
+  history.push(settings.auth.loginPath, true);
+}
+
+
 const CsrfLink = setContext((_, { headers }) => {
   const token = Cookies.get(settings.auth.csrf.cookieName);
 
@@ -28,11 +33,12 @@ const CsrfLink = setContext((_, { headers }) => {
 
 const NetworkErrorsLink = onError(error => {
   if (error.networkError) {
+    const { redirected } = error.networkError.response;
+    const { statusCode } = error.networkError;
+
     // TODO: check for error.networkError.response
-    if (error.networkError.response.redirected
-      || [401, 403].includes(error.networkError.statusCode))
-    {
-      history.push(settings.auth.loginPath, true);
+    if (redirected || [401, 403].includes(statusCode)) {
+      RedirectToAuth();
     }
   }
 });
