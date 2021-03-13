@@ -74,7 +74,6 @@ module.exports = merge(common, {
     }),
     new MiniCssExtractPlugin({filename: '[name].styles.css'}),
     new FaviconsWebpackPlugin({
-      background: process.env.BRAND_COLOR,
       icons: {
         android: true,
         appleIcon: true,
@@ -88,7 +87,6 @@ module.exports = merge(common, {
       logo: path.resolve(__dirname, process.env.FRONTEND_DIR, 'images', 'icon.png'),
       persistentCache: true,
       prefix: 'icons/',
-      title: process.env.BRAND_NAME,
     }),
     new FileManagerPlugin({
       onEnd: {
