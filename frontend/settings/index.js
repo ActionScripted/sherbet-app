@@ -31,4 +31,4 @@ const settings = {
 };
 
 
-module.exports = {'settings': settings}
+module.exports = {'settings': settings};

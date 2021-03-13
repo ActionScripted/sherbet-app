@@ -1,10 +1,9 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -25,13 +24,13 @@ module.exports = merge(common, {
             loader: MiniCssExtractPlugin.loader
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true
             }
           },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               ident: 'postcss',
               plugins: (loader) => [
@@ -40,7 +39,7 @@ module.exports = merge(common, {
             }
           },
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               sourceMap: true
             }
