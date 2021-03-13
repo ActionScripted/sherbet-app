@@ -77,14 +77,6 @@ exit
 mv frontend/package*.json ./
 ```
 
-## Future
-
-* React hot reload or react refresh
-* Use `pipenv` or something comparable.
-* Consolidate project names, colors, etc. and use vars and the rest throughout.
-* More bits from html5boilerplate
-* Icon font finalization (fa brands, styles)
-
 ## "I Hate This, It's Now How I'd Do It"
 
 I get it, 100%. If this is at least close, I'd strongly suggest copying and removing, versus trying to rebuild from zero. It's not hard, it's just a lot of time to burn.
