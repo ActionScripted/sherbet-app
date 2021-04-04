@@ -1,8 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 
 
-class AppView(LoginRequiredMixin, TemplateView):
+class AppView(TemplateView):
     template_name = 'pages/app.html'
 
 

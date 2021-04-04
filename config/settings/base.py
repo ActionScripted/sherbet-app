@@ -122,7 +122,7 @@ PUBLIC_VIEWS = [
     'django.views.defaults.page_not_found',
     'django.views.defaults.permission_denied',
     'django.views.defaults.server_error',
-    'sherbet.pages.views.AppView',
+    'sherbet.pages.views.IndexView',
     'sherbet.pages.views.RobotsView',
 ]
 

@@ -20,7 +20,7 @@ urlpatterns = [
     path('admin/', admin_site.urls),
     path('hijack/', include('hijack.urls', namespace='hijack')),
     # GraphQL
-    path('graphql', GraphQLView.as_view(graphiql=True)),
+    path('graphql', GraphQLView.as_view(graphiql=settings.DEBUG)),
 ]
 
 if settings.DEBUG:
