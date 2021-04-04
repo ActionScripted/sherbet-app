@@ -14,11 +14,18 @@ import Router from 'Components/Router';
 import { client } from 'Client';
 
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Router>
-      <App />
-    </Router>
-  </ApolloProvider>,
-  document.getElementById('sherbet-app')
-);
+const appContainer = document.getElementById('sherbet-app');
+
+/**
+ * Only load our app if the container exists.
+ */
+if (appContainer) {
+  ReactDOM.render(
+    <ApolloProvider client={client}>
+      <Router>
+        <App />
+      </Router>
+    </ApolloProvider>,
+    appContainer
+  );
+}

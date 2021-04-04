@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}App{% endblock %}
+
+{% block content %}
+  <h1>Index view</h1>
+  <ul>
+    <li><a href="{% url 'pages:home' %}">Home</a></li>
+    <li><a href="{% url 'users:login' %}">Log in</a></li>
+    <li><a href="#TODO">Sign Up</a></li>
+{% endblock %}

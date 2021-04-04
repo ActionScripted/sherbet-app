@@ -90,9 +90,9 @@ export default class NavBar extends React.Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
+          <a className="navbar-item" href="/">
             <img src={Logo} alt="Sherbet: Home" />
-          </Link>
+          </a>
 
           <a
             aria-expanded="false"
@@ -109,7 +109,7 @@ export default class NavBar extends React.Component {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <BulmaNavLink to="/">Home</BulmaNavLink>
+            <BulmaNavLink to="/home/">Home</BulmaNavLink>
             {user.isAuthenticated &&
               <BulmaNavLink to="/users/">Users</BulmaNavLink>
             }

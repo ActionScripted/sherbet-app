@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Redirect,
   Route,
   Switch
 } from 'react-router-dom';
@@ -20,7 +21,7 @@ export default class Layout extends React.Component {
             <Switch>
               <Route exact path="/login/" component={Login} />
               <Route exact path="/users/" component={Users} />
-              <Route path="/" component={Home} />
+              <Route path="/home" component={Home} />
             </Switch>
           </div>
         </section>
