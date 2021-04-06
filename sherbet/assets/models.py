@@ -1,14 +1,13 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
 
-
-from sherbet.models import CommentsMixin
-from sherbet.models import FamilyMixin
+from sherbet.comments.models import CommentsMixin
+from sherbet.families.models import FamilyMixin
+from sherbet.locations.models import LocationMixin
 from sherbet.models import HistoryMixin
-from sherbet.models import LocationMixin
 
 
-class Asset(CommentsMixin, FamilyMixin, HistoryMixin, LocationMixin):
+class Asset(LocationMixin, FamilyMixin, CommentsMixin, HistoryMixin):
     cost = MoneyField(
         decimal_places=2,
         default_currency='USD',

@@ -1,13 +1,14 @@
 # System(s)
+._*
+.apdisk
 .AppleDB
 .AppleDesktop
 .AppleDouble
 .DS_Store
+.idea
 .LSOverride
 .Spotlight-V100
 .Trashes
-._*
-.apdisk
 .vscode
 Icon
 

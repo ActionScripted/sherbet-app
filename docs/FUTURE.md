@@ -6,3 +6,4 @@
 * More bits from html5boilerplate
 * Icon font finalization (fa brands, styles)
 * Change from memcached to redis
+* Postgres sharding/scaling with tenancy (django-citus without Azure)

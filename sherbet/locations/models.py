@@ -1,6 +1,6 @@
 from django.db import models
 
-from sherbet.models import FamilyMixin
+from sherbet.families.models import FamilyMixin
 from sherbet.models import HistoryMixin
 
 
@@ -18,3 +18,16 @@ class Location(FamilyMixin, HistoryMixin):
     def __str__(self):
         address = ', '.join(list(filter(None, [self.address_1, self.address_2])))
         return f'{self.name} ({address}, {self.city}, {self.state} {self.zip})'
+
+
+class LocationMixin(models.Model):
+    location = models.ForeignKey(
+        'locations.Location',
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name='%(class)s_location',
+    )
+
+    class Meta:
+        abstract = True
