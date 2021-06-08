@@ -24,3 +24,5 @@
 * Property management system integration (contacts, billing)
 * Pay-per-feature (perhaps in lieu of tiers)
 * Landing pages for rentals/properties (contact form, assets, wifi code, etc.)
+* Credits system (like in a video game) so you can unlock certain features as-needed
+* Themes, skins, logos, for paid tiers
