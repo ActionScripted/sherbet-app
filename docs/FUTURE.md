@@ -26,3 +26,5 @@
 * Landing pages for rentals/properties (contact form, assets, wifi code, etc.)
 * Credits system (like in a video game) so you can unlock certain features as-needed
 * Themes, skins, logos, for paid tiers
+* Community form, last x person to replace a thing and who they went with and how much they paid for. 
+* Energy consumption per appliance (DTE insight)
